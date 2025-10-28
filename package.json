@@ -14,8 +14,7 @@
   },
   "scripts": {
     "test": "echo \"No tests yet\" && exit 0",
-    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
-    "smoke:get-api-credit": "npm run build && node examples/smoke-get-api-credit.mjs"
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean"
   },
   "repository": {
     "type": "git",

@@ -4,11 +4,3 @@ To provide convenient Typescript program integration for [https://docs.fish.audi
 ```bash
 npm install fish-audio
 ```
-
-## Quick smoke test
-
-Run a real request (requires `FISH_API_KEY` in env):
-
-```bash
-FISH_API_KEY=sk_... npm run smoke:get-api-credit
-```
