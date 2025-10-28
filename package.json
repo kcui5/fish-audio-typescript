@@ -1,5 +1,5 @@
 {
-  "name": "fish-audio-sdk",
+  "name": "fish-audio",
   "version": "0.0.1",
   "description": "To provide convenient TypeScript program integration for https://docs.fish.audio",
   "main": "./dist/index.js",
@@ -14,7 +14,8 @@
   },
   "scripts": {
     "test": "echo \"No tests yet\" && exit 0",
-    "build": "tsup src/index.ts --format esm,cjs --dts --clean"
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
+    "smoke:get-api-credit": "npm run build && node examples/smoke-get-api-credit.mjs"
   },
   "repository": {
     "type": "git",
@@ -33,5 +34,8 @@
     "@types/node": "^24.9.1",
     "tsup": "^8.5.0",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@msgpack/msgpack": "^3.1.2"
   }
 }
