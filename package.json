@@ -1,40 +1,42 @@
 {
-  "name": "fish-audio",
-  "version": "0.0.1",
-  "description": "To provide convenient TypeScript program integration for https://docs.fish.audio",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    }
-  },
-  "scripts": {
-    "test": "echo \"No tests yet\" && exit 0",
-    "build": "tsup src/index.ts --format esm,cjs --clean && tsc"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kcui5/fish-audio-typescript.git"
-  },
-  "keywords": [
-    "tts"
-  ],
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/kcui5/fish-audio-typescript/issues"
-  },
-  "homepage": "https://github.com/kcui5/fish-audio-typescript#readme",
-  "devDependencies": {
-    "@types/node": "^24.9.1",
-    "tsup": "^8.5.0",
-    "typescript": "^5.9.3"
-  },
-  "dependencies": {
-    "@msgpack/msgpack": "^3.1.2"
-  }
+    "name": "fish-audio",
+    "version": "0.0.1",
+    "description": "To provide convenient Node.js program integration for https://docs.fish.audio",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kcui5/fish-audio-typescript.git"
+    },
+    "license": "MIT",
+    "author": "",
+
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "files": ["dist"],
+    "type": "commonjs",
+    
+    "scripts": {
+        "test": "echo \"No tests yet\" && exit 0",
+        "build": "tsc --project tsconfig.json",
+        "clean": "rm -rf dist",
+        "prepare": "npm run build"
+    },
+    
+    "devDependencies": {
+        "@types/node": "^24.9.1",
+        "@types/ws": "^8.18.1",
+        "tsup": "^8.5.0",
+        "typescript": "^5.9.3"
+    },
+    "dependencies": {
+        "@msgpack/msgpack": "^3.1.2",
+        "ws": "^8.18.3"
+    },
+
+    "keywords": [
+        "tts"
+    ],
+    "bugs": {
+        "url": "https://github.com/kcui5/fish-audio-typescript/issues"
+    },
+    "homepage": "https://github.com/kcui5/fish-audio-typescript#readme"
 }
