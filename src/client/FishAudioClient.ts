@@ -9,7 +9,7 @@ export declare namespace FishAudioClient {
         environment?: Supplier<environments.FishAudioEnvironment | string>;
         /** Specify a custom URL to connect the client to. */
         baseUrl?: Supplier<string>;
-        /** Override the xi-api-key header */
+        /** Override the Authorization header */
         apiKey?: Supplier<string | undefined>;
         /** Additional headers to include in requests. */
         headers?: Record<string, string | Supplier<string | null | undefined> | null | undefined>;
@@ -22,7 +22,7 @@ export declare namespace FishAudioClient {
         maxRetries?: number;
         /** A hook to abort the request. */
         abortSignal?: AbortSignal;
-        /** Override the xi-api-key header */
+        /** Override the Authorization header */
         apiKey?: string | undefined;
         /** Additional query string parameters to include in the request. */
         queryParams?: Record<string, unknown>;
@@ -47,9 +47,9 @@ export class FishAudioClient {
             ..._options,
             headers: mergeHeaders(
                 {
-                    "xi-api-key": _options?.apiKey,
                     "User-Agent": "fish-audio",
                 },
+                typeof _options?.apiKey === "string" ? { Authorization: `Bearer ${_options.apiKey}` } : {},
                 _options?.headers,
             ),
         };

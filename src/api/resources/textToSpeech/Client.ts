@@ -10,7 +10,7 @@ export declare namespace TextToSpeech {
         environment?: core.Supplier<environments.FishAudioEnvironment | string>;
         /** Specify a custom URL to connect the client to. */
         baseUrl?: core.Supplier<string>;
-        /** Override the xi-api-key header */
+        /** Override the Authorization header */
         apiKey?: core.Supplier<string | undefined>;
         /** Additional headers to include in requests. */
         headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
@@ -23,7 +23,7 @@ export declare namespace TextToSpeech {
         maxRetries?: number;
         /** A hook to abort the request. */
         abortSignal?: AbortSignal;
-        /** Override the xi-api-key header */
+        /** Override the Authorization header */
         apiKey?: string | undefined;
         /** Additional query string parameters to include in the request. */
         queryParams?: Record<string, unknown>;
@@ -56,9 +56,19 @@ export class TextToSpeech {
         request: TTSRequestOptions,
         requestOptions?: TextToSpeech.RequestOptions,
     ): Promise<core.WithRawResponse<ReadableStream<Uint8Array>>> {
+        const _authHeader =
+            requestOptions?.apiKey != null
+                ? `Bearer ${requestOptions.apiKey}`
+                : typeof this._options?.apiKey === "string"
+                    ? `Bearer ${this._options.apiKey}`
+                    : undefined;
+
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             this._options?.headers,
-            mergeOnlyDefinedHeaders({ "xi-api-key": requestOptions?.apiKey ?? this._options?.apiKey, model: model }),
+            mergeOnlyDefinedHeaders({
+                Authorization: _authHeader,
+                model: model,
+            }),
             requestOptions?.headers,
         );
 

@@ -8,9 +8,9 @@ export async function play(audio: AsyncIterable<Uint8Array>): Promise<void> {
         });
     }
 
-    const { spawn } = require("node:child_process");
-    const { Readable } = require("node:stream");
-    const commandExists = require("command-exists");
+    const { spawn } = await import("node:child_process");
+    const { Readable } = await import("node:stream");
+    const commandExists = (await import("command-exists")).default;
 
     if (!commandExists.sync("ffplay")) {
         throw new FishAudioError({
