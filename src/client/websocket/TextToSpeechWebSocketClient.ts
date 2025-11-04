@@ -4,8 +4,7 @@ import { RealtimeConnection, StartEvent, TextEvent, CloseEvent } from "./connect
 import * as core from "../../core/index.js";
 import * as environments from "../../environments.js";
 import { TTSRequestOptions } from "../../api/resources/textToSpeech/requests/TTSRequest.js";
-
-export type Backends = 'speech-1.5' | 'speech-1.6' | 'agent-x0' | 's1' | 's1-mini';
+import { Backends } from "../../api/resources/textToSpeech/Client.js";
 
 /**
  * Text-to-Speech WebSocket client.

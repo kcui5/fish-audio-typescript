@@ -5,6 +5,8 @@ import * as errors from "../../../errors/index.js";
 import * as apiErrors from "../../../api/errors/index.js";
 import { TTSRequestOptions } from "./requests/TTSRequest.js";
 
+export type Backends = 'speech-1.5' | 'speech-1.6' | 'agent-x0' | 's1' | 's1-mini';
+
 export declare namespace TextToSpeech {
     export interface Options {
         environment?: core.Supplier<environments.FishAudioEnvironment | string>;
@@ -32,8 +34,6 @@ export declare namespace TextToSpeech {
     }
 }
 
-//TODO?: switch model and voice to match ElevenLabs (given model: string should be voice_id and request should contain model)
-
 export class TextToSpeech {
     protected readonly _options: TextToSpeech.Options;
 
@@ -46,15 +46,15 @@ export class TextToSpeech {
      * @throws {@link apiErrors.UnprocessableEntityError}
      */
     public convert(
-        model: string,
         request: TTSRequestOptions,
+        model: Backends = "s1",
         requestOptions?: TextToSpeech.RequestOptions,
     ): core.HttpResponsePromise<ReadableStream<Uint8Array>> {
         return core.HttpResponsePromise.fromPromise(this.__convert(model, request, requestOptions));
     }
 
     private async __convert(
-        model: string,
+        model: Backends,
         request: TTSRequestOptions,
         requestOptions?: TextToSpeech.RequestOptions,
     ): Promise<core.WithRawResponse<ReadableStream<Uint8Array>>> {
