@@ -35,6 +35,16 @@ export class TextEvent {
     }
 }
 
+export class FlushEvent {
+    readonly event = "flush";
+
+    toJSON() {
+        return {
+            event: this.event,
+        };
+    }
+}
+
 export class CloseEvent {
     readonly event = "stop";
 
@@ -43,7 +53,7 @@ export class CloseEvent {
     }
 }
 
-type WebSocketMessage = StartEvent | TextEvent | CloseEvent;
+type WebSocketMessage = StartEvent | TextEvent | FlushEvent | CloseEvent;
 
 /**
  * Events emitted by the RealtimeConnection.
