@@ -5,8 +5,8 @@ import * as errors from "../../../errors/index.js";
 import * as apiErrors from "../../../api/errors/index.js";
 import { Ivc } from "./ivc/Client.js";
 import { ModelEntity } from "./types/ModelEntity.js";
-import { ModelListRequestOptions } from "./requests/ModelListRequest.js";
-import { UpdateModelRequestOptions } from "./requests/UpdateModelRequest.js";
+import { ModelListRequest } from "./requests/ModelListRequest.js";
+import { UpdateModelRequest } from "./requests/UpdateModelRequest.js";
 import { ModelListResponse } from "./types/ModelListResponse.js";
 import { DeleteVoiceResponse } from "./types/DeleteVoiceResponse.js";
 import { UpdateVoiceResponse } from "./types/UpdateVoiceResponse.js";
@@ -56,7 +56,7 @@ export class Voices {
     /**
      * Returns a list of all available voices for a user.
      *
-     * @param {ModelListRequestOptions} request
+     * @param {ModelListRequest} request
      * @param {Voices.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link apiErrors.UnprocessableEntityError}
@@ -65,14 +65,14 @@ export class Voices {
      *     await client.voices.search()
      */
     public search(
-        request: ModelListRequestOptions = {},
+        request: ModelListRequest = {},
         requestOptions?: Voices.RequestOptions,
     ): core.HttpResponsePromise<ModelListResponse> {
         return core.HttpResponsePromise.fromPromise(this.__search(request, requestOptions));
     }
 
     private async __search(
-        request: ModelListRequestOptions = {},
+        request: ModelListRequest = {},
         requestOptions?: Voices.RequestOptions,
     ): Promise<core.WithRawResponse<ModelListResponse>> {
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
@@ -349,7 +349,7 @@ export class Voices {
      */
     public update(
         voiceId: string,
-        request: UpdateModelRequestOptions,
+        request: UpdateModelRequest,
         requestOptions?: Voices.RequestOptions,
     ): core.HttpResponsePromise<UpdateVoiceResponse> {
         return core.HttpResponsePromise.fromPromise(this.__update(voiceId, request, requestOptions));
@@ -357,7 +357,7 @@ export class Voices {
 
     private async __update(
         voiceId: string,
-        request: UpdateModelRequestOptions,
+        request: UpdateModelRequest,
         requestOptions?: Voices.RequestOptions,
     ): Promise<core.WithRawResponse<UpdateVoiceResponse>> {
         const _request = await core.newFormData();

@@ -1,2 +1,2 @@
 export {};
-export { type ReferenceAudio, type TTSRequestOptions } from "./requests/TTSRequest.js";
+export { type ReferenceAudio, type TTSRequest } from "./requests/TTSRequest.js";

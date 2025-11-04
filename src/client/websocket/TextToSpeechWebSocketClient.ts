@@ -3,7 +3,7 @@ import WebSocket from "ws";
 import { RealtimeConnection, StartEvent, TextEvent, CloseEvent } from "./connection.js";
 import * as core from "../../core/index.js";
 import * as environments from "../../environments.js";
-import { TTSRequestOptions } from "../../api/resources/textToSpeech/requests/TTSRequest.js";
+import { TTSRequest } from "../../api/resources/textToSpeech/requests/TTSRequest.js";
 import { Backends } from "../../api/resources/textToSpeech/Client.js";
 
 /**
@@ -44,14 +44,14 @@ export class TextToSpeechWebSocket extends TextToSpeech {
      * @example
      * ```typescript
      * const connection = await client.textToSpeech.convertRealtime({
-     *     request: TTSRequestOptions,
+     *     request: TTSRequest,
      *     text_stream: "...",
      *     backend: "s1",
      * });
      * ```
      */
     public async convertRealtime(
-        request: TTSRequestOptions,
+        request: TTSRequest,
         textStream: Iterable<string> | AsyncIterable<string>,
         backend: Backends = "s1",
     ): Promise<RealtimeConnection> {

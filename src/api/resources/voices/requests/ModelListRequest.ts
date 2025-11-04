@@ -1,4 +1,4 @@
-export interface ModelListRequestOptions {
+export interface ModelListRequest {
     page_size?: number;
     page_number?: number;
     title?: string;

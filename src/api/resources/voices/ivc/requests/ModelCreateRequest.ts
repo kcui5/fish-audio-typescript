@@ -1,4 +1,4 @@
-export interface ModelCreateRequestOptions {
+export interface ModelCreateRequest {
     type?: 'tts';
     title: string;
     train_mode?: 'fast';

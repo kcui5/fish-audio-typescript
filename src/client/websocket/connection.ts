@@ -1,13 +1,13 @@
 import WebSocket from "ws";
 import { encode, decode } from "@msgpack/msgpack";
 import { EventEmitter } from "node:events";
-import type { TTSRequestOptions } from "../../api/resources/textToSpeech/requests/TTSRequest.js";
+import type { TTSRequest } from "../../api/resources/textToSpeech/requests/TTSRequest.js";
 
 export class StartEvent {
     readonly event = "start";
-    readonly request: TTSRequestOptions;
+    readonly request: TTSRequest;
 
-    constructor(request: TTSRequestOptions) {
+    constructor(request: TTSRequest) {
         this.request = request;
     }
 

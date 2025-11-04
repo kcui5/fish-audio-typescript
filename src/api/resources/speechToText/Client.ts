@@ -3,7 +3,7 @@ import * as core from "../../../core/index.js";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../core/headers.js";
 import * as errors from "../../../errors/index.js";
 import * as apiErrors from "../../../api/errors/index.js";
-import { STTRequestOptions } from "./requests/STTRequest.js";
+import { STTRequest } from "./requests/STTRequest.js";
 import { STTResponse } from "./types/STTResponse.js";
 
 export declare namespace SpeechToText {
@@ -43,7 +43,7 @@ export class SpeechToText {
     /**
      * Transcribe an audio or video file.
      *
-     * @param {SpeechToTextRequestOptions} request
+     * @param {STTRequest} request
      * @param {SpeechToText.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link apiErrors.UnprocessableEntityError}
@@ -55,14 +55,14 @@ export class SpeechToText {
      *     })
      */
     public convert(
-        request: STTRequestOptions,
+        request: STTRequest,
         requestOptions?: SpeechToText.RequestOptions,
     ): core.HttpResponsePromise<STTResponse> {
         return core.HttpResponsePromise.fromPromise(this.__convert(request, requestOptions));
     }
 
     private async __convert(
-        request: STTRequestOptions,
+        request: STTRequest,
         requestOptions?: SpeechToText.RequestOptions,
     ): Promise<core.WithRawResponse<STTResponse>> {
         const _request = await core.newFormData();

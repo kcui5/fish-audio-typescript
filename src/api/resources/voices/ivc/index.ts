@@ -1,2 +1,2 @@
 export {};
-export type { ModelCreateRequestOptions } from "./requests/ModelCreateRequest.js";
+export type { ModelCreateRequest } from "./requests/ModelCreateRequest.js";

@@ -3,7 +3,7 @@ import * as core from "../../../core/index.js";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../core/headers.js";
 import * as errors from "../../../errors/index.js";
 import * as apiErrors from "../../../api/errors/index.js";
-import { TTSRequestOptions } from "./requests/TTSRequest.js";
+import { TTSRequest } from "./requests/TTSRequest.js";
 
 export type Backends = 'speech-1.5' | 'speech-1.6' | 'agent-x0' | 's1' | 's1-mini';
 
@@ -46,7 +46,7 @@ export class TextToSpeech {
      * @throws {@link apiErrors.UnprocessableEntityError}
      */
     public convert(
-        request: TTSRequestOptions,
+        request: TTSRequest,
         model: Backends = "s1",
         requestOptions?: TextToSpeech.RequestOptions,
     ): core.HttpResponsePromise<ReadableStream<Uint8Array>> {
@@ -55,7 +55,7 @@ export class TextToSpeech {
 
     private async __convert(
         model: Backends,
-        request: TTSRequestOptions,
+        request: TTSRequest,
         requestOptions?: TextToSpeech.RequestOptions,
     ): Promise<core.WithRawResponse<ReadableStream<Uint8Array>>> {
         const _authHeader =

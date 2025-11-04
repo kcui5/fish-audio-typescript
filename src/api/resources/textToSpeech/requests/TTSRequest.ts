@@ -3,7 +3,7 @@ export interface ReferenceAudio {
     text: string;
 }
 
-export interface TTSRequestOptions {
+export interface TTSRequest {
     text: string;
     temperature?: number;
     top_p?: number;

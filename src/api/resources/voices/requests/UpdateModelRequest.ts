@@ -1,4 +1,4 @@
-export interface UpdateModelRequestOptions {
+export interface UpdateModelRequest {
     title?: string;
     description?: string;
     cover_image?: File;

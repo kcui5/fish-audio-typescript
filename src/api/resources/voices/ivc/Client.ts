@@ -4,7 +4,7 @@ import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../core/headers.
 import * as errors from "../../../../errors/index.js";
 import * as apiErrors from "../../../../api/errors/index.js";
 import { ModelEntity } from "../types/ModelEntity.js";
-import { ModelCreateRequestOptions } from "./requests/ModelCreateRequest.js";
+import { ModelCreateRequest } from "./requests/ModelCreateRequest.js";
 
 export declare namespace Ivc {
     export interface Options {
@@ -43,7 +43,7 @@ export class Ivc {
     /**
      * Create a voice clone and add it to your Voices
      *
-     * @param {ModelCreateParams} request
+     * @param {ModelCreateRequest} request
      * @param {Ivc.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link apiErrors.UnprocessableEntityError}
@@ -56,14 +56,14 @@ export class Ivc {
      *     })
      */
     public create(
-        request: ModelCreateRequestOptions,
+        request: ModelCreateRequest,
         requestOptions?: Ivc.RequestOptions,
     ): core.HttpResponsePromise<ModelEntity> {
         return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
-        request: ModelCreateRequestOptions,
+        request: ModelCreateRequest,
         requestOptions?: Ivc.RequestOptions,
     ): Promise<core.WithRawResponse<ModelEntity>> {
         const _request = await core.newFormData();
