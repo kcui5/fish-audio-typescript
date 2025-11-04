@@ -4,6 +4,7 @@ import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../core/headers.js"
 import * as errors from "../../../errors/index.js";
 import * as apiErrors from "../../../api/errors/index.js";
 import { TTSRequest } from "./requests/TTSRequest.js";
+import { encode } from "@msgpack/msgpack";
 
 export type Backends = 'speech-1.5' | 'speech-1.6' | 'agent-x0' | 's1' | 's1-mini';
 
@@ -74,6 +75,23 @@ export class TextToSpeech {
             requestOptions?.headers,
         );
 
+        //Serialize to msgpack
+        let payload: any = request;
+        if (Array.isArray(request.references)) {
+            const refs = await Promise.all(
+                request.references.map(async (r) => {
+                    const audio = (r as any)?.audio;
+                    if (typeof File !== "undefined" && audio instanceof File) {
+                        const buf = new Uint8Array(await audio.arrayBuffer());
+                        return { ...r, audio: buf };
+                    }
+                    return r;
+                })
+            );
+            payload = { ...request, references: refs };
+        }
+        const body = encode(payload);
+
         const _response = await core.fetcher<ReadableStream<Uint8Array>>({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -83,10 +101,10 @@ export class TextToSpeech {
             ),
             method: "POST",
             headers: _headers,
-            contentType: "application/json",
+            contentType: "application/msgpack",
             queryParameters: {  ...requestOptions?.queryParams },
-            requestType: "json",
-            body: request,
+            requestType: "bytes",
+            body: body,
             responseType: "streaming",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 240000,
             ...(requestOptions?.maxRetries != null ? { maxRetries: requestOptions.maxRetries } : {}),

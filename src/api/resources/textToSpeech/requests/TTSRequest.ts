@@ -1,5 +1,5 @@
 export interface ReferenceAudio {
-    audio: Buffer;
+    audio: File;
     text: string;
 }
 
