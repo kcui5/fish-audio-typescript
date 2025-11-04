@@ -32,6 +32,8 @@ export declare namespace TextToSpeech {
     }
 }
 
+//TODO?: switch model and voice to match ElevenLabs (given model: string should be voice_id and request should contain model)
+
 export class TextToSpeech {
     protected readonly _options: TextToSpeech.Options;
 
