@@ -1,0 +1,6 @@
+import { ModelEntity } from "./ModelEntity.js";
+
+export interface ModelListResponse {
+    total: number;
+    items: ModelEntity[];
+}

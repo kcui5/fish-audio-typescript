@@ -13,7 +13,7 @@ export type Backends = 'speech-1.5' | 'speech-1.6' | 'agent-x0' | 's1' | 's1-min
  * **Node.js only**: This class uses Node.js-specific APIs (WebSocket from 'ws').
  * It will not work in browsers, Deno, or Cloudflare Workers without modifications.
  */
-export class TextToSpeechWebSocketClient extends TextToSpeech {
+export class TextToSpeechWebSocket extends TextToSpeech {
     constructor(options: TextToSpeech.Options = {}) {
         super(options);
     }
