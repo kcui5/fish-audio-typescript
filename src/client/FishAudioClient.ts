@@ -4,6 +4,7 @@ import { Supplier } from "../core/index.js";
 import * as errors from "../errors/index.js";
 import { TextToSpeechWebSocket } from "./websocket/TextToSpeechWebSocketClient.js";
 import { Voices } from "../api/resources/voices/Client.js";
+import { SpeechToText } from "../api/resources/speechToText/Client.js";
 
 export declare namespace FishAudioClient {
     export interface Options {
@@ -36,6 +37,7 @@ export class FishAudioClient {
     protected readonly _options: FishAudioClient.Options;
     protected _textToSpeech: TextToSpeechWebSocket | undefined;
     protected _voices: Voices | undefined;
+    protected _speechToText: SpeechToText | undefined;
 
     constructor(_options: FishAudioClient.Options = {}) {
         const apiKey = _options.apiKey ?? process.env.FISH_API_KEY;
@@ -63,5 +65,9 @@ export class FishAudioClient {
 
     public get voices(): Voices {
         return (this._voices ??= new Voices(this._options));
+    }
+
+    public get speechToText(): SpeechToText {
+        return (this._speechToText ??= new SpeechToText(this._options));
     }
 }

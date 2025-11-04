@@ -1,0 +1,11 @@
+export interface ASRSegment {
+    text: string;
+    start: number;
+    end: number;
+}
+
+export interface STTResponse {
+    text: string;
+    duration: number;
+    segments: ASRSegment[];
+}
