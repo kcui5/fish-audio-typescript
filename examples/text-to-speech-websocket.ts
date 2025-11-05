@@ -3,7 +3,7 @@
 const apiKey = "your_api_key";
 const referenceId = "";
 
-import { FishAudioClient, RealtimeEvents } from "fish-audio";
+import { FishAudioClient, RealtimeEvents } from "../dist/esm/index.js";
 import { writeFile } from "fs/promises";
 import path from "path";
 
