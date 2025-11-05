@@ -2,17 +2,17 @@ import { FishAudioClient } from "../dist/esm/index.js";
 import { createReadStream } from "fs";
 
 async function main() {
-    const title = "audio";
-
     const fishAudio = new FishAudioClient();
 
-    const audioFile = createReadStream(new URL("./audio.mp3", import.meta.url));
+    const title = "cloned-voice-name";
+    const audioFile = createReadStream(new URL("/path/to/your/audio/file"));
+    const coverImageFile = createReadStream(new URL("/path/to/your/cover/image/file"));
 
     try {
         const response = await fishAudio.voices.ivc.create({
             title: title,
             voices: [audioFile],
-            cover_image: createReadStream(new URL("./cover image.png", import.meta.url)),
+            cover_image: coverImageFile,
         });
 
         console.log("Voice created:", {

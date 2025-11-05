@@ -146,10 +146,9 @@ try {
 import { FishAudioClient } from "fish-audio";
 import { createReadStream } from "fs";
 
-const title = "cloned-voice-name";
-
 const fishAudio = new FishAudioClient();
 
+const title = "cloned-voice-name";
 const audioFile = createReadStream(new URL("/path/to/your/audio/file"));
 const coverImageFile = createReadStream(new URL("/path/to/your/cover/image/file"));
 
