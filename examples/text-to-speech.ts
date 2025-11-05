@@ -2,7 +2,7 @@
 // Set these variables to run:
 const apiKey = "your_api_key";
 const referenceId = "reference_id";
-const fileName = "file_name.mp3";
+const fileName = "audio_file_name.mp3";
 const filePath = "path/to/your/audio/file.mp3";
 
 
